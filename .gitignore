@@ -1,3 +1,5 @@
-.env
-target/
+.env                # NEVER COMMIT THIS
 logs/
+target/             # dbt artifacts
+dbt_modules/        # dbt dependencies
+.DS_Store
