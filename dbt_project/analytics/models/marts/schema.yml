@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: fact_home_team_rosters
+    description: "每场比赛主场球队的球员名单"
+    columns:
+      - name: game_id
+        tests:
+          - not_null
+      - name: player_id
+        tests:
+          - not_null
