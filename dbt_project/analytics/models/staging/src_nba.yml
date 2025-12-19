@@ -6,3 +6,4 @@ sources:
     schema: PUBLIC         # 3. 物理Schema名
     tables:
       - name: nba_players  # 4. 物理表名 (Seed 生成的那张表)
+      - name: nba_games    # 5. 另一张物理表
