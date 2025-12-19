@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: stg_nba_players          # 我们要测试刚才写的这个模型
+    description: "NBA球员基础清洗表"
+    columns:
+      - name: player_id
+        description: "球员唯一ID"
+        tests:
+          - unique                 # 测试1：ID必须唯一
+          - not_null               # 测试2：ID不能是空的
+
+      - name: player_name
+        description: "球员姓名"
+        tests:
+          - not_null               # 测试3：名字也不能空
+
+      - name: position
+        tests:
+          - accepted_values:       # 测试4：职位只能是这三个值
+              values: ['F', 'G', 'C']
