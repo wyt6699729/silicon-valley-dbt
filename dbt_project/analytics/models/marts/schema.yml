@@ -10,3 +10,19 @@ models:
       - name: player_id
         tests:
           - not_null
+
+models:
+  - name: fct_player_stats
+    description: "这是我们的核心事实表，记录了每位球员每场比赛的表现和胜负结果。"
+    columns:
+      - name: player_id
+        description: "球员的唯一标识符，来自 seed nba_players"
+        tests:
+          - not_null
+
+      - name: is_win
+        description: "胜负核心指标。1 代表赢，0 代表输。逻辑：(主队且主胜) 或 (客队且客胜)。"
+        tests:
+          - not_null
+          - accepted_values:
+              values: [0, 1]
