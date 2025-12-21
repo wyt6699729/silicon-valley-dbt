@@ -26,3 +26,17 @@ models:
           - not_null
           - accepted_values:
               values: [0, 1]
+
+models:
+  - name: mart_player_leaderboard
+    description: "球员胜率排行榜"
+    columns:
+      - name: player_name      # <--- 这里改成 player_name
+        description: "球员姓名"
+        tests:
+          - unique             # 在这个榜单里，名字必须是唯一的
+          - not_null
+      
+      - name: win_percentage
+        tests:
+          - not_null
