@@ -1,0 +1,26 @@
+version: 2
+
+sources:
+  - name: tpch
+    description: "Snowflake TPC-H 官方样本数据 (模拟真实零售业务)"
+    database: DBT_DEV
+    schema: PUBLIC
+    # 考试考点：Source Freshness (新鲜度检查)
+    # 如果数据超过24小时没更新，dbt source freshness 会报警
+    # freshness:
+    #   warn_after: {count: 24, period: hour}
+    #   error_after: {count: 48, period: hour}
+    # loaded_at_field: _etl_loaded_at  # 假设我们加载时有这个时间戳（如果没有暂时忽略）
+
+    tables:
+      - name: raw_customers
+        description: "原始客户表"
+        columns:
+          - name: c_custkey
+            tests: [unique, not_null] # 考点：Source上的测试
+
+      - name: raw_orders
+        description: "原始订单表"
+        columns:
+          - name: o_orderkey
+            tests: [unique, not_null]
