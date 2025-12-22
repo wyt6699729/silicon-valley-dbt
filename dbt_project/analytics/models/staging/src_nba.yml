@@ -1,9 +1,0 @@
-version: 2
-
-sources:
-  - name: nba_raw          # 1. 给这个源起个代号，以后我们在代码里就叫它 'nba_raw'
-    database: DBT_DEV      # 2. 物理数据库名 (Snowflake里的名字)
-    schema: PUBLIC         # 3. 物理Schema名
-    tables:
-      - name: nba_players  # 4. 物理表名 (Seed 生成的那张表)
-      - name: nba_games    # 5. 另一张物理表
