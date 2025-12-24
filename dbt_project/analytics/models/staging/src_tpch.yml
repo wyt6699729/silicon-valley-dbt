@@ -21,6 +21,34 @@ sources:
 
       - name: raw_orders
         description: "原始订单表"
+        loaded_at_field: o_orderdate  # 假设有这个时间戳字段
+
+        freshness:
+          warn_after: {count: 24, period: hour} # 超过24小时没更新 -》 报警
+          error_after: {count: 48, period: hour} # 超过48小时没更新 -》 报错
+
         columns:
           - name: o_orderkey
             tests: [unique, not_null]
+models:     
+  - name: stg_tpch_orders
+    description: "订单的中间层模型"
+    columns:
+      - name: order_key
+        description: "订单主键"
+      - name: customer_key
+        description: "客户外键"
+      - name: status
+        description: "订单状态"
+      - name: total_price
+        description: "订单总价"
+      - name: order_date
+        description: "订单日期"
+      - name: original_price
+        description: "订单原价"
+      - name: discounted_price
+        description: "订单折后价"
+        tests:
+          - not_null
+          - assert_column_less_than:
+              target_column: original_price
